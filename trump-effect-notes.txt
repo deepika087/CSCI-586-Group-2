@@ -1,0 +1,6 @@
+Out of 1052 records
+ - 319 Trump
+ - 293 Hillary
+ - 351 Didn't Vote
+ - 89 Other candidates. 
+ 
