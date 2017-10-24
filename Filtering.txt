@@ -1,0 +1,11 @@
+1.) World views replaced with positive and negative
+Our lives are threatened by terrorists, criminals, and immigrants and our priority should be to protect ourselves. - Negative
+It's a big, beautiful world, mostly full of good people, and we must find a way to embrace each other and not allow ourselves to become isolated. - Positive
+
+2.) dots removed. some columns had sring in the form  "... somehting" replaced these with "something"
+
+3.) Salaries spaces removes. Ex: had salaries 10 000 
+
+4.) removed columns that didn't look relevant.: weights, work_type_manual
+
+5.) formatted column names, replaced [dem] work_type_manual with work_type_manual
