@@ -1,0 +1,80 @@
+load csv with headers from "file:///Users/deepika/MyStuff/CSCI_DBI/trump_dataset.csv" as row
+
+CREATE (user: User { 
+	uuid : row.uuid, 
+	country_code : row.country_code, 
+	age : row.age, 
+	gender : row.gender,
+	education_level : row.education_level,
+	degree_of_urbanisation : row.degree_of_urbanisation,
+	residency : row.residency,
+	household_size : row.household_size,
+	immigration : row.immigration,
+	origin : row.origin,
+	settlement_size : row.settlement_size,
+	hometown : row.hometown,
+	ethnicity : row.ethnicity,
+	religion : row.religion,
+	employment_status : row.employment_status,
+	employment_status_in_education : row.employment_status_in_education,
+	work_type_routine : row.work_type_routine,
+	work_type_manual : row.work_type_manual,
+	lgbtq : row.lgbtq,
+	income_net_monthly : row.income_net_monthly,
+	disposable_income : row.disposable_income,
+	household_finances_past12months : row.household_finances_past12months,
+	financial_security : row.financial_security,
+	change_household_finances_next12months : row.change_household_finances_next12months,
+	job_security : row.job_security,
+	status_national_economy : row.status_national_economy,
+	change_economy_country_past12months : row.change_economy_country_past12months,
+	economy_country_next12months : row.economy_country_next12months
+})
+
+MERGE ( social : Social { 
+	social_networks_regularly_used : row.social_networks_regularly_used,
+	social_media_activity_rank : row.social_media_activity_rank,
+	online_sharing_frequency : row.online_sharing_frequency,
+	sharing_network_size : row.sharing_network_size,
+	member_organization : row.member_organization,
+	organization_activities_timeperweek : row.organization_activities_timeperweek,
+	media_tv_hours : row.media_tv_hours,
+	media_radio_hours : row.media_radio_hours,
+	media_print_hours : row.media_print_hours 
+})
+
+MERGE ( question: Question {
+	opinion_government : row.opinion_government,
+	political_view : row.political_view,
+	likelihood_to_demonstrate : row.likelihood_to_demonstrate,
+	vote_for_in_us_election : row.vote_for_in_us_election,
+	frequency_of_voting : row.frequency_of_voting,
+	vote_next_national_election : row.vote_next_national_election,
+	important_issues_when_voting : row.important_issues_when_voting,
+	ranking_importance_of_issues_when_voting : row.ranking_importance_of_issues_when_voting,
+	preferred_type_of_political_leader : row.preferred_type_of_political_leader,
+	frequent_sharing_of_politicalviews : row.frequent_sharing_of_politicalviews,
+	independence_or_respect : row.independence_or_respect,
+	obedience_or_selfreliance : row.obedience_or_selfreliance,
+	consideration_or_good_behaviour : row.consideration_or_good_behaviour,
+	curiosity_or_good_manners : row.curiosity_or_good_manners,
+	democracy_own_country_satisfaction : row.democracy_own_country_satisfaction,
+	next_generation_opportunities : row.next_generation_opportunities,
+	currentplace_change_past5years : row.currentplace_change_past5years,
+	hometown_change_past5years : row.hometown_change_past5years,
+	country_direction_past5years : row.country_direction_past5years,
+	financial_situation_change_past5years : row.financial_situation_change_past5years,
+	international_trade_gain_or_loss : row.international_trade_gain_or_loss,
+	country_comes_first : row.country_comes_first,
+	improving_life_by_hardwork : row.improving_life_by_hardwork,
+	conspiracy : row.conspiracy,
+	government_controlled_by_elite : row.government_controlled_by_elite,
+	trust_in_own_judgment : row.trust_in_own_judgment,
+	perceived_effect_of_diversity : row.perceived_effect_of_diversity,
+	gender_discrimination_importance : row.gender_discrimination_importance,
+	family_friends_highereducation : row.family_friends_highereducation,
+	worldview : row.worldview
+})
+
+CREATE (user)-[:hasSocialOption]->(social)
+CREATE (user)-[:answeredQuestion]->(question);
