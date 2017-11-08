@@ -1,0 +1,415 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#"
+     xml:base="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Better_Healthcare -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Better_Healthcare"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Better_enforcement_of_law_and_order -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Better_enforcement_of_law_and_order"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Better_infrastructure -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Better_infrastructure"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Better_public_services -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Better_public_services"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Better_schools -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Better_schools"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Education_Level -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Education_Level"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Employment_Status -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Employment_Status"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Environment_Protection -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Environment_Protection"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Equal_rights_for_minority_groups -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Equal_rights_for_minority_groups"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Ethnicity -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Ethnicity"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Facebook -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Facebook"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Higher_Wages -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Higher_Wages"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Higher_pensions -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Higher_pensions"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Hometown -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Hometown"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Household_size -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Household_size"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Immigration -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Immigration"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Instagram -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Instagram"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#LGBTQ -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#LGBTQ"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_Who_can_bring_change -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_Who_can_bring_change"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_who_Cares_about_people -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_who_Cares_about_people"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_who_Focuses_on_Practical_Solution -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_who_Focuses_on_Practical_Solution"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_who_is_Close_topeople -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_who_is_Close_topeople"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_who_speaks_his_mind -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_who_speaks_his_mind"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_with_Right_Experience -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Leader_with_Right_Experience"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Less_Immigration -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Less_Immigration"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Line -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Line"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#LinkedIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#LinkedIn"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Lower_Taxes -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Lower_Taxes"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Lower_costs_of_living -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Lower_costs_of_living"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Max_Income_Monthly -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Max_Income_Monthly"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Media_TV_hours -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Media_TV_hours"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Min_Income_Monthly -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Min_Income_Monthly"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#More_Jobs -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#More_Jobs"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#My_own_blog -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#My_own_blog"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Opinion_Govt -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Opinion_Govt"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Organization_None -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Organization_None"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Origin -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Origin"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Perceived_Effect_of_diversity -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Perceived_Effect_of_diversity"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Pinterest -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Pinterest"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Political_View -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Political_View"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Political_party -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Political_party"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Reddit -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Reddit"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Religion -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Religion"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Religious_Institution -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Religious_Institution"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Residency -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Residency"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Snapchat -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Snapchat"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Social_Media_None -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Social_Media_None"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Sports_club -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Sports_club"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Twitter -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Twitter"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Urbanisation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Urbanisation"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Viber -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Viber"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Vote_next_National_Election -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Vote_next_National_Election"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#VotedFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#VotedFor"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Voting_Issues_None -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Voting_Issues_None"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#WeChat -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#WeChat"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Wealth_Redistribution -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Wealth_Redistribution"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#WhatsApp -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#WhatsApp"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#YouTube -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#YouTube"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#age -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#age"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#frequency_of_voting -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#frequency_of_voting"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#gender -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#gender"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Google+ -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#Google+"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#User -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sakshi/ontologies/2017/10/untitled-ontology-3#User"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
