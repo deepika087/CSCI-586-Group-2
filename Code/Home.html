@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Analysis of the 2016 US Elections</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <script type="text/javascript">
+      // ******************Simple******************
+      $(document).ready(function()
+      {
+        totalVoters()
+      });
+
+      function totalVoters()
+      {
+        $.post("TrumpEffect.php",{check : "totalvoters"}, function(data) 
+            { 
+              var result = $.parseJSON(data);
+              console.log(result[1]);
+                if (data != 404)
+                {
+                  google.charts.load("current", {packages:["corechart"]});
+                  google.charts.setOnLoadCallback(function() { totalvoterChart(JSON.stringify(result[0]));});
+                }
+              
+            })
+            .fail(function(xhr, status, error) 
+            {
+               console.log(error)
+            });
+      }
+
+      function statsCharts(queryVal, elementID)
+      {
+
+        $.post("TrumpEffect.php",{check : queryVal}, function(data) 
+            { 
+              var result = $.parseJSON(data);
+              
+              console.log(result[1]);
+                if (data != 404)
+                {
+                  google.charts.load("current", {packages:["corechart"]});
+                  google.charts.setOnLoadCallback(function() { statsChart(JSON.stringify(result[0]), elementID);});
+                }
+              
+            })
+            .fail(function(xhr, status, error) 
+            {
+               console.log(error)
+            });
+      }
+
+      // ************************************
+
+      // ******************Compound******************
+
+      //Social Media
+      $(document).on('change', '.form-check-input.class1, select.selectClass1', function() {
+
+      var checkboxItems = new Array();
+
+          $('input:checkbox.form-check-input.class1').each(function () {
+                if(this.checked)
+                {
+                  checkboxItems.push($(this).val());
+                }               
+          });
+          var popln = $('#inputState').find(":selected").val();
+          if(popln != "Select" && checkboxItems.length > 0)
+          {
+            socialMedia(checkboxItems, $('#inputState').find(":selected").val());
+          }
+          
+      });
+
+      // Voting Issues
+      $(document).on('change', '.form-check-input.class2, select.selectClass2', function() {
+
+      var checkboxItems = new Array();
+
+          $('input:checkbox.form-check-input.class2').each(function () {
+                if(this.checked)
+                {
+                  checkboxItems.push($(this).val());
+                }
+               
+          });
+          var age = $('#inputState1').find(":selected").val();
+          if(age != "Select" && checkboxItems.length > 0)
+          {
+            votingIssues(checkboxItems, $('#inputState1').find(":selected").val());
+          }
+          
+      });
+      
+      // Type of Leader
+      $(document).on('change', 'select.selectClassEmployment, select.selectClassGender, select.selectClassVotedFor, select.selectClassSalary', function() {
+
+                var employment = $('#inputStateEmployment').find(":selected").val();
+                var gender = $('#inputStateGender').find(":selected").val();
+                var salary = $('#inputStateSalary').find(":selected").val();
+                var votedFor = $('#inputStateVotedFor').find(":selected").val();
+
+                if(employment != "Select" && gender != "Select" && salary != "Select" && votedFor != "Select")
+                {
+                  typeLeader(employment, gender, salary, votedFor);
+                }
+                
+            });
+
+      // Highlighted Issues
+      $(document).on('change', 'select.selectClassEducation, select.selectClassVotedFor1, select.selectClassOpinion, .form-check-input.class3', function() {
+
+                var education = $('#inputStateEducation').find(":selected").val();
+                var opinion = $('#inputStateOpinion').find(":selected").val();
+                var votedFor = $('#inputStateVotedFor1').find(":selected").val();
+
+                var checkboxItems = new Array();
+
+                $('input:checkbox.form-check-input.class3').each(function () {
+                      if(this.checked)
+                      {
+                        checkboxItems.push($(this).val());
+                      }
+                     
+                });
+
+                if(education != "Select" && votedFor != "Select" && opinion != "Select" && checkboxItems.length > 0)
+                {
+                  highlightedIssues(education, votedFor, opinion, checkboxItems);
+                }
+                
+            });
+
+      // Analysis 1
+      $(document).on('change', 'select.selectClassFrequency, select.selectClassVotedFor2, .form-check-input.class4', function() {
+
+                var frequency = $('#inputStateFrequency').find(":selected").val();
+                var votedFor = $('#inputStateVotedFor2').find(":selected").val();
+
+                var checkboxItems = new Array();
+
+                $('input:checkbox.form-check-input.class4').each(function () {
+                      if(this.checked)
+                      {
+                        checkboxItems.push($(this).val());
+                      }
+                     
+                });
+
+                if(frequency != "Select" && votedFor != "Select" && checkboxItems.length > 0)
+                {
+                  analysisOne(frequency, votedFor, checkboxItems);
+                }
+                
+            });
+
+      // Analysis 2
+      $(document).on('change', 'select.selectClassDiversity, .form-check-input.class5, .form-check-input.class6', function() {
+
+                var diversity = $('#inputStateDiversity').find(":selected").val();
+
+                var checkboxIssues = new Array();
+                var checkboxOrigin = new Array();
+
+                $('input:checkbox.form-check-input.class5').each(function () {
+                      if(this.checked)
+                      {
+                        checkboxIssues.push($(this).val());
+                      }
+                     
+                });
+
+                $('input:checkbox.form-check-input.class6').each(function () {
+                      if(this.checked)
+                      {
+                        checkboxOrigin.push($(this).val());
+                      }
+                     
+                });
+
+                if(diversity != "Select" && checkboxIssues.length > 0 && checkboxOrigin.length > 0)
+                {
+                  analysisTwo(diversity, checkboxIssues, checkboxOrigin);
+                }
+                
+            });
+
+      // ************************************
+
+      function socialMedia(media, age)
+      {
+          var check = 0;
+          if(media && age)
+          {
+            check = 1;
+          }
+          if(check == 1)
+          {
+            $.post("TrumpEffect.php",{check : check, age: age, media: media}, function(data) 
+              { 
+                var result = $.parseJSON(data);
+              
+              console.log(result[1]);
+                  if (data != 404)
+                  {
+                    google.charts.load("current", {packages:["corechart"]});
+                    google.charts.setOnLoadCallback(function() { socialMediaChart(JSON.stringify(result[0]));});
+                  }
+                
+              })
+              .fail(function(xhr, status, error) 
+              {
+                 console.log(error)
+              });
+            }
+            else
+            {
+              $('#barchart').text = "Please select the appropriate fields";
+            }
+      }
+
+
+      function votingIssues(issues, popln)
+      {
+          var check = 0;
+
+          if(issues && popln)
+          {
+            check = 2;
+          }
+          if(check == 2)
+          {
+            $.post("TrumpEffect.php",{check : check, popln: popln, issues: issues}, function(data) 
+              { 
+                var result = $.parseJSON(data);
+              
+              console.log(result[1]);
+                  if (data != 404)
+                  {
+                    google.charts.load("current", {packages:["corechart"]});
+                    google.charts.setOnLoadCallback(function() { votingIssuesChart(JSON.stringify(result[0]));});
+                  }
+                
+              })
+              .fail(function(xhr, status, error) 
+              {
+                 console.log(error)
+              });
+            }
+            else
+            {
+              $('#barchart1').text = "Please select the appropriate fields";
+            }
+      }
+
+      function typeLeader(employment, gender, salary, votedFor)
+      {
+          var check = 0;
+
+          if(employment && gender && salary && votedFor)
+          {
+            check = 3;
+          }
+          if(check == 3)
+          {
+            $.post("TrumpEffect.php",{check : check, employment : employment, gender : gender, salary : salary, votedFor : votedFor}, function(data) 
+              { 
+                var result = $.parseJSON(data);
+              
+              console.log(result[1]);
+                  if (data != 404)
+                  {
+                    google.charts.load("current", {packages:["corechart"]});
+                    google.charts.setOnLoadCallback(function() { typeLeaderChart(JSON.stringify(result[0]));});
+                  }
+                
+              })
+              .fail(function(xhr, status, error) 
+              {
+                 console.log(error)
+              });
+            }
+            else
+            {
+              $('#barchart2').text = "Please select the appropriate fields";
+            }
+      }
+
+
+      function highlightedIssues(education, votedFor, opinion, ethnicity)
+      {
+          var check = 0;
+
+          if(education && votedFor && opinion && ethnicity)
+          {
+            check = 4;
+          }
+          if(check == 4)
+          {
+            $.post("TrumpEffect.php",{check : check, education : education, votedForIssues : votedFor, opinion : opinion, ethnicity : ethnicity}, function(data) 
+              { 
+                var result = $.parseJSON(data);
+              
+              console.log(result[1]);
+                  if (data != 404)
+                  {
+                    google.charts.load("current", {packages:["corechart"]});
+                    google.charts.setOnLoadCallback(function() { highlightedIssuesChart(JSON.stringify(result[0]));});
+                  }
+                
+              })
+              .fail(function(xhr, status, error) 
+              {
+                 console.log(error)
+              });
+            }
+            else
+            {
+              $('#barchart3').text = "Please select the appropriate fields";
+            }
+      }
+
+      function analysisOne(frequency, votedFor, organization)
+      {
+          var check = 0;
+
+          if(frequency && votedFor && organization)
+          {
+            check = 5;
+          }
+          if(check == 5)
+          {
+            $.post("TrumpEffect.php",{check : check, frequency: frequency, votedForAnalysisOne: votedFor, organization: organization}, function(data) 
+              { 
+                var result = $.parseJSON(data);
+              
+              console.log(result[1]);
+                  if (data != 404)
+                  {
+                    google.charts.load("current", {packages:["corechart"]});
+                    google.charts.setOnLoadCallback(function() { analysisOneChart(JSON.stringify(result[0]));});
+                  }
+                
+              })
+              .fail(function(xhr, status, error) 
+              {
+                 console.log(error)
+              });
+            }
+            else
+            {
+              $('#barchart4').text = "Please select the appropriate fields";
+            }
+      }
+
+      function analysisTwo(diversity, issues, origin)
+      {
+          var check = 0;
+
+          if(diversity && issues && origin)
+          {
+            check = 6;
+          }
+          if(check == 6)
+          {
+            $.post("TrumpEffect.php",{check : check, diversity: diversity, issuesAnalysisTwo: issues, originAnalysisTwo: origin}, function(data) 
+              { 
+                var result = $.parseJSON(data);
+              
+              console.log(result[1]);
+                  if (data != 404)
+                  {
+                    google.charts.load("current", {packages:["corechart"]});
+                    google.charts.setOnLoadCallback(function() { analysisTwoChart(JSON.stringify(result[0]));});
+                  }
+                
+              })
+              .fail(function(xhr, status, error) 
+              {
+                 console.log(error)
+              });
+            }
+            else
+            {
+              $('#barchart5').text = "Please select the appropriate fields";
+            }
+      }
+      
+
+      </script>
+      <script type="text/javascript">
+
+        function votingIssuesChart(jsonString)
+      {
+        
+        var jString = jsonString;
+
+        var jsonData = eval(jString);    
+
+        jsonData.sort(function(a,b){
+                return b[1] - a[1];
+            });
+
+        if (jsonData.length != 0)
+          {
+            // Create our data table out of JSON data loaded from server.
+            var data = new google.visualization.DataTable(jsonData);
+
+            data.addColumn('string', 'Voting Issues Analysis'); //ADD COLUMN 1
+            data.addColumn('number', 'Count'); //ADD COLUMN 2
+
+            data.addRows(jsonData);
+              var options = {
+                title: 'Votes received in relation to issues prevelant in urban/rural settlement',
+                width: 740,
+                height: 500,
+                chartArea: {  width: "40%", height: "70%" }
+              };
+
+              var chart = new google.visualization.BarChart(document.getElementById('barchart1'));
+              chart.draw(data, options);
+          }
+          else
+          {
+            $('#barchart1').text('No data for this combination');
+          }
+      }
+
+      function socialMediaChart(jsonString)
+      {
+            var jString = jsonString;
+
+            var jsonData = eval(jString);  
+
+            jsonData.sort(function(a,b){
+                return b[1] - a[1];
+            });  
+
+        if (jsonData.length != 0)
+          {
+            // Create our data table out of JSON data loaded from server.
+            var data = new google.visualization.DataTable(jsonData);
+
+            data.addColumn('string', 'Social Media Analysis'); //ADD COLUMN 1
+            data.addColumn('number', 'Count'); //ADD COLUMN 2
+
+            data.addRows(jsonData);
+              var options = {
+                title: 'Votes received in relation to social media usage of users',
+                width: 850,
+                height: 500,
+                chartArea: {  width: "50%", height: "70%" }
+              };
+
+              var chart = new google.visualization.PieChart(document.getElementById('barchart'));
+              chart.draw(data, options);
+          }
+          else
+          {
+            $('#barchart').text('No data for this combination');
+          }
+      }
+
+      function typeLeaderChart(jsonString)
+      {
+            var jString = jsonString;
+
+            var jsonData = eval(jString);   
+
+            jsonData.sort(function(a,b){
+                return b[1] - a[1];
+            }); 
+
+        if (jsonData.length != 0)
+          {
+            // Create our data table out of JSON data loaded from server.
+            var data = new google.visualization.DataTable(jsonData);
+
+            data.addColumn('string', 'Type of Leader'); //ADD COLUMN 1
+            data.addColumn('number', 'Count'); //ADD COLUMN 2
+
+            data.addRows(jsonData);
+              var options = {
+                title: 'Type of Leader people preferred',
+                width: 820,
+                height: 500,
+                pieHole: 0.4,
+                chartArea: {  width: "50%", height: "70%" }
+              };
+
+              var chart = new google.visualization.PieChart(document.getElementById('barchart2'));
+              chart.draw(data, options);
+          }
+          else
+          {
+            $('#barchart2').text('No data for this combination');
+          }
+      }
+
+      function highlightedIssuesChart(jsonString)
+      {
+            var jString = jsonString;
+
+            var jsonData = eval(jString);  
+
+            jsonData.sort(function(a,b){
+                return b[1] - a[1];
+            });  
+
+        if (jsonData.length != 0)
+          {
+            // Create our data table out of JSON data loaded from server.
+            var data = new google.visualization.DataTable(jsonData);
+
+            data.addColumn('string', 'Type of Leader'); //ADD COLUMN 1
+            data.addColumn('number', 'Count'); //ADD COLUMN 2
+
+            data.addRows(jsonData);
+              var options = {
+                title: '',
+                width: 820,
+                height: 500,
+                chartArea: {  width: "50%", height: "70%" }
+              };
+
+              var chart = new google.visualization.BarChart(document.getElementById('barchart3'));
+              chart.draw(data, options);
+          }
+          else
+          {
+            $('#barchart3').text('No data for this combination');
+          }
+      }
+
+      function analysisOneChart(jsonString)
+      {
+            var jString = jsonString;
+
+            var jsonData = eval(jString);    
+
+            jsonData.sort(function(a,b){
+                return b[1] - a[1];
+            });
+
+        if (jsonData.length != 0)
+          {
+            // Create our data table out of JSON data loaded from server.
+            var data = new google.visualization.DataTable(jsonData);
+
+            data.addColumn('string', 'Type of Leader'); //ADD COLUMN 1
+            data.addColumn('number', 'Count'); //ADD COLUMN 2
+
+            data.addRows(jsonData);
+              var options = {
+                title: '',
+                width: 820,
+                height: 500,
+                chartArea: {  width: "50%", height: "40%" }
+              };
+
+              var chart = new google.visualization.ColumnChart(document.getElementById('barchart4'));
+              chart.draw(data, options);
+          }
+          else
+          {
+            $('#barchart4').text('No data for this combination');
+          }
+      } 
+
+      function analysisTwoChart(jsonString)
+      {
+            var jString = jsonString;
+
+            var jsonData = eval(jString); 
+
+            jsonData.sort(function(a,b){
+                return b[1] - a[1];
+            });   
+
+        if (jsonData.length != 0)
+          {
+            // Create our data table out of JSON data loaded from server.
+            var data = new google.visualization.DataTable(jsonData);
+
+            data.addColumn('string', 'Type of Leader'); //ADD COLUMN 1
+            data.addColumn('number', 'Count'); //ADD COLUMN 2
+
+            data.addRows(jsonData);
+              var options = {
+                title: '',
+                width: 820,
+                height: 500,
+                chartArea: {  width: "50%", height: "70%" }
+              };
+
+              var chart = new google.visualization.BarChart(document.getElementById('barchart5'));
+              chart.draw(data, options);
+          }
+          else
+          {
+            $('#barchart5').text('No data for this combination');
+          }
+      }   
+   
+
+      function totalvoterChart(jsonString) 
+        {
+            var jString = jsonString;
+
+            var jsonData = eval(jString);
+
+            jsonData.sort(function(a,b){
+                return b[1] - a[1];
+            });
+            // Create our data table out of JSON data loaded from server.
+            var data = new google.visualization.DataTable(jsonData);
+
+            data.addColumn('string', 'Total number of Voters'); //ADD COLUMN 1
+            data.addColumn('number', 'Count'); //ADD COLUMN 2
+
+            data.addRows(jsonData);
+              var options = {
+                title: 'Total number of Voters',
+                width: 850,
+                height: 450,
+                is3D: true,
+                chartArea: {  width: "50%", height: "70%" }
+              };
+
+              var chart = new google.visualization.PieChart(document.getElementById('donutchart1'));
+              chart.draw(data, options);
+        }
+
+        function statsChart(jsonString, elementID) 
+        {
+            var jString = jsonString;
+
+            var jsonData = eval(jString);
+
+            jsonData.sort(function(a,b){
+                return b[1] - a[1];
+            });
+
+            // Create our data table out of JSON data loaded from server.
+            var data = new google.visualization.DataTable(jsonData);
+            data.addColumn('string', 'Data'); //ADD COLUMN 1
+            data.addColumn('number', 'Count'); //ADD COLUMN 2
+
+            data.addRows(jsonData);
+              var options = {
+                title: '',
+                width: 850,
+                height: 500,
+                chartArea: {  width: "50%", height: "70%" }
+              };
+              var chart = new google.visualization.BarChart(document.getElementById(elementID));
+              chart.draw(data, options);
+        }
+
+    </script>
+    
+</head>
+<body style="margin-bottom: 2%">
+  <div class="container">
+  <div id="bannerimage"></div><br><br>    
+    <h2>Analysis of the 2016 US Presidential Elections</h2><br><br>
+
+      <nav class="nav nav-pills" id="myTab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">General Statistics</a>
+        <a class="nav-item nav-link" id="nav-menu1-tab" data-toggle="tab" href="#nav-menu1" role="tab" aria-controls="nav-menu1" aria-selected="false">Social Media Analysis</a>
+        <a class="nav-item nav-link" id="nav-menu2-tab" data-toggle="tab" href="#nav-menu2" role="tab" aria-controls="nav-menu2" aria-selected="false">Issues While Voting</a>
+        <a class="nav-item nav-link" id="nav-menu3-tab" data-toggle="tab" href="#nav-menu3" role="tab" aria-controls="nav-menu3" aria-selected="false">Leadership Qualities</a>
+        <a class="nav-item nav-link" id="nav-menu4-tab" data-toggle="tab" href="#nav-menu4" role="tab" aria-controls="nav-menu4" aria-selected="false">Highlighted Issues</a>
+        <a class="nav-item nav-link" id="nav-menu5-tab" data-toggle="tab" href="#nav-menu5" role="tab" aria-controls="nav-menu5" aria-selected="false">Origin Analysis</a>
+        <a class="nav-item nav-link" id="nav-menu6-tab" data-toggle="tab" href="#nav-menu6" role="tab" aria-controls="nav-menu6" aria-selected="false">Diversity Analysis</a>
+      </nav>
+      
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active in" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">          
+          <br>
+          <h3>General Statistics</h3>
+          <br><br>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-q1-list" data-toggle="list" href="#list-q1" role="tab" aria-controls="q1" onclick="totalVoters()"><small>Total number of Voters</small></a>
+                <a class="list-group-item list-group-item-action" id="list-q2-list" data-toggle="list" href="#list-q2" role="tab" aria-controls="q2" onclick="statsCharts('ethnicity','donutchart2')"><small>Ethnicity</small></a>
+                <a class="list-group-item list-group-item-action" id="list-q3-list" data-toggle="list" href="#list-q3" role="tab" aria-controls="q3" onclick="statsCharts('origin','donutchart3')"><small>Origin</small></a>
+                <a class="list-group-item list-group-item-action" id="list-q4-list" data-toggle="list" href="#list-q4" role="tab" aria-controls="q4" onclick="statsCharts('leadertype','donutchart4')"><small>Leadership Qualities</small></a>
+                <a class="list-group-item list-group-item-action" id="list-q5-list" data-toggle="list" href="#list-q5" role="tab" aria-controls="q5" onclick="statsCharts('issues','donutchart5')"><small>General Issues</small></a>
+                <a class="list-group-item list-group-item-action" id="list-q6-list" data-toggle="list" href="#list-q6" role="tab" aria-controls="q6" onclick="statsCharts('socialmedia','donutchart6')"><small>Social Media</small></a>
+                <a class="list-group-item list-group-item-action" id="list-q7-list" data-toggle="list" href="#list-q7" role="tab" aria-controls="q7" onclick="statsCharts('organization','donutchart7')"><small>Organization</small></a>
+                <a class="list-group-item list-group-item-action" id="list-q8-list" data-toggle="list" href="#list-q8" role="tab" aria-controls="q8" onclick="statsCharts('fbwt','donutchart8')"><small>Initial Agenda: Social Media</small></a>
+                <a class="list-group-item list-group-item-action" id="list-q9-list" data-toggle="list" href="#list-q9" role="tab" aria-controls="q9" onclick="statsCharts('lowtax','donutchart9')"><small>Initial Agenda: Lower Taxes</small></a>
+                <a class="list-group-item list-group-item-action" id="list-q0-list" data-toggle="list" href="#list-q0" role="tab" aria-controls="q0" onclick="statsCharts('lgbtq','donutchart10')"><small>Initial Agenda: LGBTQ Analysis</small></a>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active in" id="list-q1" role="tabpanel" aria-labelledby="list-q1-list" style="float: right;">
+                  <h3>Total number of Voters</h3>
+                  <div id="donutchart1"></div>
+                </div>
+                <div class="tab-pane fade in" id="list-q2" role="tabpanel" aria-labelledby="list-q2-list" style="float: right;">
+                  <h3>Ethnicity</h3>
+                  <div id="donutchart2" style="float: right;"></div>
+                </div>
+                <div class="tab-pane fade in" id="list-q3" role="tabpanel" aria-labelledby="list-q3-list" style="float: right;">
+                  <h3>Origin</h3>
+                  <div id="donutchart3" style="float: right;"></div>
+                </div>
+                <div class="tab-pane fade in" id="list-q4" role="tabpanel" aria-labelledby="list-q4-list" style="float: right;">
+                  <h3>Leadership Qualities</h3>
+                  <div id="donutchart4" style="float: right;"></div>
+                </div>
+                <div class="tab-pane fade in" id="list-q5" role="tabpanel" aria-labelledby="list-q5-list" style="float: right;">
+                  <h3>General Issues</h3>
+                  <div id="donutchart5" style="float: right;"></div>
+                </div>
+                <div class="tab-pane fade in" id="list-q6" role="tabpanel" aria-labelledby="list-q6-list" style="float: right;">
+                  <h3>Social Media</h3>
+                  <div id="donutchart6" style="float: right;"></div>
+                </div>
+                <div class="tab-pane fade in" id="list-q7" role="tabpanel" aria-labelledby="list-q7-list" style="float: right;">
+                  <h3>Organization</h3>
+                  <div id="donutchart7" style="float: right;"></div>
+                </div>
+                <div class="tab-pane fade in" id="list-q8" role="tabpanel" aria-labelledby="list-q8-list" style="float: right;">
+                  <h3>Users who used Facebook user but not WhatsApp</h3>
+                  <div id="donutchart8" style="float: right;"></div>
+                </div>
+                <div class="tab-pane fade in" id="list-q9" role="tabpanel" aria-labelledby="list-q9-list" style="float: right;">
+                  <h3>People who wanted 'Lower taxes' in the age group of 24-36</h3>
+                  <div id="donutchart9" style="float: right;"></div>
+                </div>
+                <div class="tab-pane fade in" id="list-q0" role="tabpanel" aria-labelledby="list-q0-list" style="float: right;">
+                  <h3>LGBTQ community in the range of 2400-3200 salary</h3>
+                  <div id="donutchart10" style="float: right;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        <div class="tab-pane fade in" id="nav-menu1" role="tabpanel" aria-labelledby="nav-menu1-tab">
+          <br>
+          <h3>Social Media Analysis</h3>
+          <br>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputState">Age</label>
+              <select id="inputState" class="form-control selectClass1">
+                <option selected>Select</option>
+                <option value="18-20">18-20 years</option>
+                <option value="20-30">20-30 years</option>
+                <option value="30-40">30-40 years</option>
+                <option value="40-50">40-50 years</option>
+                <option value="50-60">50-60 years</option>
+                <option value="60-70">60-70 years</option>
+                <option value="70-80">70-80 years</option>
+                <option value="80-90">80-90 years</option>
+                <option value="90-100">90-100 years</option>
+              </select>
+            </div>
+            <h6>Social Media</h6>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="Facebook" id="Facebook">
+                Facebook
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="Twitter" id="Twitter">
+                Twitter
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="Instagram" id="Instagram">
+                Instagram
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="Snapchat" id="Snapchat">
+                Snapchat
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="Pinterest" id="Pinterest">
+                Pinterest
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="LinkedIn" id="LinkedIn">
+                LinkedIn
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="Reddit" id="Reddit">
+                Reddit
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="WhatsApp" id="WhatsApp">
+                WhatsApp
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="WeChat" id="WeChat">
+                WeChat
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="Viber" id="Viber">
+                Viber
+              </label>
+            </div>
+            <div class="form-check">  
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="Line" id="Line">
+                Line
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="YouTube" id="YouTube">
+                YouTube
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="my_own_blog" id="my_own_blog">
+                Own Blog
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class1" value="Social_Media_None" id="Social_Media_None">
+                No Social Media
+              </label>
+            </div>
+          </div>
+          <div class="col-md-8" id="barchart"></div>
+        </div>
+        <div class="tab-pane fade in" id="nav-menu2" role="tabpanel" aria-labelledby="nav-menu2-tab">
+          <br>
+          <h3>Issues while Voting</h3>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="inputState1">Settlement</label>
+              <select id="inputState1" class="form-control selectClass2">
+                <option selected>Select</option>
+                <option value="rural">Rural</option>
+                <option value="city">Urban</option>
+              </select>
+            </div>
+            <h6>Issues</h6>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Environment_Protection " id="Environment_Protection ">
+                Environment Protection
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Wealth_Redistribution" id="Wealth_Redistribution">
+                Wealth Redistribution
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Lower_Taxes" id="Lower_Taxes">
+                Lower Taxes
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="More_Jobs" id="More_Jobs">
+                More Jobs
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Less_Immigration" id="Less_Immigration">
+                Less Immigration
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Better_schools" id="Better_schools">
+                Better Schools
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Better_Healthcare" id="Better_Healthcare">
+                Better Healthcare
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Higher_Wages" id="Higher_Wages">
+                Higher Wages
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Higher_pensions" id="Higher_pensions">
+                Higher Pensions
+              </label>
+            </div>
+            <div class="form-check">  
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Equal_rights_for_minority_groups" id="Equal_rights_for_minority_groups">
+                Equal Rights for Minority Groups
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Better_enforcement_of_law_and_order" id="Better_enforcement_of_law_and_order">
+                Better Enforcement of Law and Order
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Lower_costs_of_living" id="Lower_costs_of_living">
+                Lower Costs of Living
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Better_public_services" id="Better_public_services">
+                Better Public Services
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Better_infrastructure" id="Better_infrastructure">
+                Better Infrastructure
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class2" value="Voting_Issues_None" id="Voting_Issues_None">
+                No Voting Issues
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6" id="barchart1"></div>
+        </div>
+
+
+        <div class="tab-pane fade in" id="nav-menu3" role="tabpanel" aria-labelledby="nav-menu3-tab">
+          <br>
+          <h3>Leadership Qualities</h3>
+          
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="inputStateGender">Gender</label>
+              <select id="inputStateGender" class="form-control selectClassGender">
+                <option selected>Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputStateEmployment">Employment Status</label>
+              <select id="inputStateEmployment" class="form-control selectClassEmployment">
+                <option selected>Select</option>
+                <option value="employed">Employed</option>
+                <option value="unemployed">Unemployed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputStateSalary">Salary Range</label>
+              <select id="inputStateSalary" class="form-control selectClassSalary">
+                <option selected>Select</option>
+                <option value="0-3000">$0-$3000</option>
+                <option value="3000-6000">$3000-$6000</option>
+                <option value="6000-9000">$6000-$9000</option>
+                <option value="9000-12000">$9000-$12000</option>
+                <option value="12000+">More than $12000</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputStateVotedFor">Voted For</label>
+              <select id="inputStateVotedFor" class="form-control selectClassVotedFor">
+                <option selected>Select</option>
+                <option value="Donald Trump">Donald Trump</option>
+                <option value="Hillary Clinton">Hillary Clinton</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-7" id="barchart2"></div>
+        </div>
+
+        <div class="tab-pane fade in" id="nav-menu4" role="tabpanel" aria-labelledby="nav-menu4-tab">
+          <br>
+          <h3>Highlighted Issues</h3>
+          
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="inputStateEducation">Education</label>
+              <select id="inputStateEducation" class="form-control selectClassEducation">
+                <option selected>Select</option>
+                <option value="University">University</option>
+                <option value="High School Education">High School Education</option>
+                <option value="Secondary School">Secondary School</option>
+                <option value="None">None</option>
+                <option value="Prefer not to answer">Prefer not to answer</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputStateOpinion">Opinion on Government</label>
+              <select id="inputStateOpinion" class="form-control selectClassOpinion">
+                <option selected>Select</option>
+                <option value="Very positive">Very positive</option>
+                <option value="Somewhat positive">Somewhat positive</option>
+                <option value="Neither positive nor negative">Neither positive nor negative</option>
+                <option value="Somewhat negative">Somewhat negative</option>
+                <option value="Very negative">Very negative</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputStateVotedFor1">Voted For</label>
+              <select id="inputStateVotedFor1" class="form-control selectClassVotedFor1">
+                <option selected>Select</option>
+                <option value="Donald Trump">Donald Trump</option>
+                <option value="Hillary Clinton">Hillary Clinton</option>
+              </select>
+            </div>
+            <h6>Ethnicity</h6>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class3" value="White" id="White">
+                White
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class3" value="Hispanic_or_Latin" id="Hispanic_or_Latin">
+                Hispanic or Latin
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class3" value="Black_or_African_American" id="Black_or_African_American">
+                Black or African American
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class3" value="Middle_Eastern_or_North_African" id="Middle_Eastern_or_North_African">
+                Middle Eastern or North African
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class3" value="Native_American_or_American_Indian" id="Native_American_or_American_Indian">
+                Native American or American Indian
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class3" value="Asian_Pacific_Islander" id="Asian_Pacific_Islander">
+                Asian Pacific Islander
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class3" value="Other_Ethnicity" id="Other_Ethnicity">
+                Other Ethnicity
+              </label>
+            </div>
+          </div>
+          <div class="col-md-8" id="barchart3"></div>
+        </div>
+
+        <div class="tab-pane fade in" id="nav-menu5" role="tabpanel" aria-labelledby="nav-menu5-tab">
+          <br>
+          <h3>Origin Analysis</h3>
+          
+          <div class="col-md-3" style="display: inline-block;">
+            <div class="form-group">
+              <label for="inputStateFrequency">Frequency of Voting</label>
+              <select id="inputStateFrequency" class="form-control selectClassFrequency">
+                <option selected>Select</option>
+                <option value="Always">Always</option>
+                <option value="Most of the time">Most of the time</option>
+                <option value="Sometimes">Sometimes</option>
+                <option value="Rarely">Rarely</option>
+                <option value="Never">Never</option>
+                <option value="I have never been eligible to vote">I have never been eligible to vote</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputStateVotedFor2">Voted For</label>
+              <select id="inputStateVotedFor2" class="form-control selectClassVotedFor2">
+                <option selected>Select</option>
+                <option value="Donald Trump">Donald Trump</option>
+                <option value="Hillary Clinton">Hillary Clinton</option>
+              </select>
+            </div>
+            <h6>Organization</h6>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class4" value="Sports_club" id="Sports_club">
+                Sports Club
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class4" value="Political_party" id="Political_party">
+                Political Party
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class4" value="Religious_Institution" id="Religious_Institution">
+                Religious Institution
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class4" value="Organization_None" id="Organization_None">
+                No Organization
+              </label>
+            </div>
+          </div>
+          <div class="col-md-9" id="barchart4"></div>
+        </div>
+
+        <div class="tab-pane fade in" id="nav-menu6" role="tabpanel" aria-labelledby="nav-menu6-tab">
+          <br>
+          <h3>Diversity Analysis</h3>
+          <hr>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="inputStateDiversity"><h6>Perceived Level of Diversity</h6></label>
+              <select id="inputStateDiversity" class="form-control selectClassDiversity">
+                <option selected>Select</option>
+                <option value="Very positively">Very positively</option>
+                <option value="Somewhat positively">Somewhat positively</option>
+                <option value="Neither positively nor negatively">Neither positively nor negatively</option>
+                <option value="Somewhat negatively">Somewhat negatively</option>
+                <option value="Very negatively">Very negatively</option>
+              </select>
+            </div>
+            <hr style="width: 80%;">
+            <h6>Issues</h6>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Environment_Protection " id="Environment_Protection ">
+                Environment Protection
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Wealth_Redistribution" id="Wealth_Redistribution">
+                Wealth Redistribution
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Lower_Taxes" id="Lower_Taxes">
+                Lower Taxes
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="More_Jobs" id="More_Jobs">
+                More Jobs
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Less_Immigration" id="Less_Immigration">
+                Less Immigration
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Better_schools" id="Better_schools">
+                Better Schools
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Better_Healthcare" id="Better_Healthcare">
+                Better Healthcare
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Higher_Wages" id="Higher_Wages">
+                Higher Wages
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Higher_pensions" id="Higher_pensions">
+                Higher Pensions
+              </label>
+            </div>
+            <div class="form-check">  
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Equal_rights_for_minority_groups" id="Equal_rights_for_minority_groups">
+                Equal Rights for Minority Groups
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Better_enforcement_of_law_and_order" id="Better_enforcement_of_law_and_order">
+                Better Enforcement of Law and Order
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Lower_costs_of_living" id="Lower_costs_of_living">
+                Lower Costs of Living
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Better_public_services" id="Better_public_services">
+                Better Public Services
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Better_infrastructure" id="Better_infrastructure">
+                Better Infrastructure
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class5" value="Voting_Issues_None" id="Voting_Issues_None">
+                No Voting Issues
+              </label>
+            </div>
+            <hr style="width: 80%;">
+            <h6>Origin</h6>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="Western_Southern_or_Northern_Europe" id="Western_Southern_or_Northern_Europe">
+                Western Southern or Northern Europe
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="Eastern_Europe" id="Eastern_Europe">
+                Eastern Europe
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="Middle_East_and_North_Africa" id="Middle_East_and_North_Africa">
+                Middle East and North Africa
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="Sub_Saharan_Africa" id="Sub_Saharan_Africa">
+                Sub Saharan Africa
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="North_America" id="North_America">
+                North America
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="Central_America" id="Central_America">
+                Central America
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="South_America" id="South_America">
+                South America
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="Central_Asia" id="Central_Asia">
+                Central Asia
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="East_Asia" id="East_Asia">
+                East Asia
+              </label>
+            </div>
+            <div class="form-check">  
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="South_Asia" id="South_Asia">
+                South Asia
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="South_East_Asia" id="South_East_Asia">
+                South East Asia
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="Oceania_Pacific_Islands" id="Oceania_Pacific_Islands">
+                Oceania Pacific Islands
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input class6" value="Other_Origin" id="Other_Origin">
+                Other Origin
+              </label>
+            </div>
+          </div>
+          <div class="col-md-8" id="barchart5"></div>
+        </div>
+
+  </div> 
+
+</body>
+<style>
+#bannerimage {
+  top: 2%;
+  width: 100%;
+  background-image: url(http://the53rdregiment.com/wp-content/uploads/2016/11/election2016_banner.jpg);
+  height: 200px;
+  background-size: 100% 100%;
+}
+body {
+  background-color: #000000;
+}
+.container {
+  background-color: #ffffff;
+  border-radius: 0px 0px 10px 10px;
+}
+</style>
+</html>
